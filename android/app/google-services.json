@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "583817390106",
+    "project_id": "kunalassingmentmishainfotech",
+    "storage_bucket": "kunalassingmentmishainfotech.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:583817390106:android:fac281e415fe69130d49a3",
+        "android_client_info": {
+          "package_name": "com.example.kunal_assignment_mishainfotech"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5bJslgP1YbvH7RgaJ1-a0tec2fRSlFBU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
