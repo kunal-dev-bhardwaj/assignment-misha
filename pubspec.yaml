@@ -48,10 +48,12 @@ dev_dependencies:
   flutter_lints: ^4.0.0
 
   firebase_database:
-  firebase_core:
-  cloud_firestore:
   get:
-
+  image_picker:
+  firebase_storage:
+  html_editor_enhanced:
+  flutter_widget_from_html:
+#  flutter_html:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

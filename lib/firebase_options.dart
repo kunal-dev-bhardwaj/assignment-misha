@@ -46,6 +46,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '583817390106',
     projectId: 'kunalassingmentmishainfotech',
     authDomain: 'kunalassingmentmishainfotech.firebaseapp.com',
+    databaseURL: 'https://kunalassingmentmishainfotech-default-rtdb.firebaseio.com',
     storageBucket: 'kunalassingmentmishainfotech.firebasestorage.app',
     measurementId: 'G-6PC4C3H20S',
   );
@@ -55,6 +56,7 @@ class DefaultFirebaseOptions {
     appId: '1:583817390106:android:fac281e415fe69130d49a3',
     messagingSenderId: '583817390106',
     projectId: 'kunalassingmentmishainfotech',
+    databaseURL: 'https://kunalassingmentmishainfotech-default-rtdb.firebaseio.com',
     storageBucket: 'kunalassingmentmishainfotech.firebasestorage.app',
   );
 
@@ -63,6 +65,7 @@ class DefaultFirebaseOptions {
     appId: '1:583817390106:ios:5d8eac4ec9af46da0d49a3',
     messagingSenderId: '583817390106',
     projectId: 'kunalassingmentmishainfotech',
+    databaseURL: 'https://kunalassingmentmishainfotech-default-rtdb.firebaseio.com',
     storageBucket: 'kunalassingmentmishainfotech.firebasestorage.app',
     iosBundleId: 'com.example.kunalAssignmentMishainfotech',
   );
@@ -72,6 +75,7 @@ class DefaultFirebaseOptions {
     appId: '1:583817390106:ios:5d8eac4ec9af46da0d49a3',
     messagingSenderId: '583817390106',
     projectId: 'kunalassingmentmishainfotech',
+    databaseURL: 'https://kunalassingmentmishainfotech-default-rtdb.firebaseio.com',
     storageBucket: 'kunalassingmentmishainfotech.firebasestorage.app',
     iosBundleId: 'com.example.kunalAssignmentMishainfotech',
   );
@@ -82,7 +86,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '583817390106',
     projectId: 'kunalassingmentmishainfotech',
     authDomain: 'kunalassingmentmishainfotech.firebaseapp.com',
+    databaseURL: 'https://kunalassingmentmishainfotech-default-rtdb.firebaseio.com',
     storageBucket: 'kunalassingmentmishainfotech.firebasestorage.app',
     measurementId: 'G-R4RPPNFZJC',
   );
+
 }

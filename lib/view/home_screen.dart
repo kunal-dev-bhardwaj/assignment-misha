@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:kunal_assignment_mishainfotech/controller/homescreen_controller.dart';
 import 'package:kunal_assignment_mishainfotech/view/add_data_screen.dart';
 
+import 'display_data.dart';
+
 
 class HomeScreen extends StatelessWidget {
   final HomescreenController controller = Get.put(HomescreenController());
@@ -36,23 +38,49 @@ class HomeScreen extends StatelessWidget {
                 itemCount: controller.itemList.length,
                 itemBuilder: (context, index) {
                   final item = controller.itemList[index];
-                  return ListTile(
-                    trailing: Checkbox(
-                      value: item['checked'],
-                      onChanged: (value) {
-                        controller.toggleCheckbox(item['id'], value!);
+
+                  return Dismissible(
+                    key: Key(item['id']),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+
+                      controller.showDeleteConfirmationDialog(context, item['id']);
+                    },
+                    background: Container(
+                      color: Colors.red,
+                      child: const Align(
+                        alignment: Alignment.centerRight,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Icon(Icons.delete, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                    child: ListTile(
+                      onTap: () {
+                        controller.setSelectedItem(item);
+                        Get.to(DataDisplayScreen());
                       },
-                    ),
-                    title: Text(item['title'],
-                      style: TextStyle(
-                      decoration: item['checked']
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
-                    ),
+                      trailing: Checkbox(
+                        value: item['checked'],
+                        onChanged: (value) {
+                          controller.toggleCheckbox(item['id'], value!);
+                        },
+                      ),
+                      title: Text(
+                        item['title'],
+                        style: TextStyle(
+                          decoration: item['checked'] ? TextDecoration.lineThrough : TextDecoration.none,
+                        ),
+                      ),
                     ),
                   );
+
+
+
                 },
               );
+
             }),
           ),
 
