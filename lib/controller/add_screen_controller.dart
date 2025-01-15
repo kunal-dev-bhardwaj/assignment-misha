@@ -29,50 +29,32 @@ class AddScreenController extends GetxController {
   }
 
   Future<String?> uploadImage() async {
-   //  final ImagePicker picker = ImagePicker();
-   //
-   //  // Pick an image from the gallery
-   //  final XFile? image = await picker.pickImage(source: ImageSource.gallery);
-   // try{
-     Reference storageReference = FirebaseStorage.instance
-         .ref()
-         .child('images/testing');
-   //   // UploadTask uploadTask = storageReference.putFile(imagePath);
-   //   await storageReference.putString("test");
-   //   //TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
-     String downloadURL = await storageReference.getDownloadURL();
-     print('File Uploaded: $downloadURL');
-   // }catch(e){
-   //   print(e);
-   // }
+    final ImagePicker picker = ImagePicker();
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
-    // if (image != null) {
-    //   try {
-    //     final File file = File(image.path);
-    //     final storageRef = FirebaseStorage.instance.ref();
-    //
-    //     // Generate a unique filename with a timestamp
-    //     final imageRef = storageRef.child('images/${DateTime.now().millisecondsSinceEpoch}.jpg');
-    //
-    //     print("Uploading image...");
-    //
-    //     // Upload the file
-    //     await imageRef.putFile(file);
-    //
-    //     // Get the download URL
-    //     final downloadUrl = await imageRef.getDownloadURL();
-    //
-    //     print("Image uploaded successfully. Download URL: $downloadUrl");
-    //
-    //     return downloadUrl;
-    //   } catch (e) {
-    //     print("Error uploading image: $e");
-    //     Get.snackbar('Error', 'Failed to upload image: $e');
-    //     return null;
-    //   }
-    // } else {
-    //   Get.snackbar('No Image Selected', 'Please select an image to upload.');
-    //   return null;
-    // }
+    if (image != null) {
+      try {
+        final File file = File(image.path);
+        final storageRef = FirebaseStorage.instance.ref();
+
+        final imageRef = storageRef.child('images/${DateTime.now().millisecondsSinceEpoch}.jpg');
+
+        print("Uploading image...");
+        await imageRef.putFile(file);
+
+        final downloadUrl = await imageRef.getDownloadURL();
+
+        print("Image uploaded successfully. Download URL: $downloadUrl");
+
+        return downloadUrl;
+      } catch (e) {
+        print("Error uploading image: $e");
+        Get.snackbar('Error', 'Failed to upload image: $e');
+        return null;
+      }
+    } else {
+      Get.snackbar('No Image Selected', 'Please select an image to upload.');
+      return null;
+    }
   }
 }

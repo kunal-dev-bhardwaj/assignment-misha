@@ -56,7 +56,7 @@ class AddDataScreen extends StatelessWidget {
               // Image Uploader
               ElevatedButton.icon(
                 onPressed: () async {
-                  final downloadUrl = await controller.uploadImage();
+                  var downloadUrl = await controller.uploadImage();
                   if (downloadUrl != null) {
                     controller.setImageUrl(downloadUrl);
                     Get.snackbar('Success', 'Image uploaded successfully!');
