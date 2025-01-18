@@ -60,19 +60,14 @@ class HomescreenController extends GetxController {
     });
   }
 
-
-  // void deleteItem(String id) {
-  //   database.child(id).remove();
-  // }
-
   Future<void> deleteItem(String id) async {
     try {
-      // Remove the item from Firebase
+
       await database.child(id).remove();
 
-      // Now, update the local list to reflect the deletion
+
       itemList.removeWhere((item) => item['id'] == id);
-      itemList.refresh(); // Notify the UI to rebuild the list
+      itemList.refresh();
 
       Get.snackbar('Success', 'Item deleted successfully');
     } catch (error) {

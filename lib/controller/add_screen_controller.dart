@@ -26,9 +26,8 @@ class AddScreenController extends GetxController {
       "timestamp": ServerValue.timestamp,
     };
     try {
-      final newRef = database.push(); // Push new item to Firebase
+      final newRef = database.push();
       await newRef.set(newItem);
-      // await database.push().set(newItem);
       Get.snackbar('Success', 'Data added successfully!');
       return true;
     } catch (error) {
