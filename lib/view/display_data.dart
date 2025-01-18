@@ -18,25 +18,28 @@ class DataDisplayScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Obx(() {
-              return Text(
+            Text(
+              ' Created At:- ${controller.formatTimestamp(controller.selectedItem['timestamp'])}',
+              style:const TextStyle(
+                fontSize: 12,
+              ),
+            ),
+            SizedBox(height: 16),
+               Text(
                 controller.selectedItem['title'],
-                style: TextStyle(
+                style:const TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
                 ),
-              );
-            }),
-            SizedBox(height: 16),
+              ),
 
-            // Display the description
+            SizedBox(height: 8),
+
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Obx(() {
-                final description = controller.selectedItem['description'] ?? 'No description available';
-                debugPrint("${controller.selectedItem['title']} descriptionn");
-                return HtmlWidget(description);
-              }),
+              child:
+              HtmlWidget(controller.selectedItem['description'] ?? 'No description available')
+
             ),
           ],
         ),

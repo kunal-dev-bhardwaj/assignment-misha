@@ -31,58 +31,64 @@ class HomeScreen extends StatelessWidget {
 
           Expanded(
             child: Obx(() {
+              if (controller.isLoading.value) {
+                return const Center(child: CircularProgressIndicator());
+              }
+
               if (controller.itemList.isEmpty) {
                 return const Center(child: Text('No items yet!'));
-              }
-              return ListView.builder(
-                itemCount: controller.itemList.length,
-                itemBuilder: (context, index) {
-                  final item = controller.itemList[index];
+              } else {
+                return ListView.builder(
+                  itemCount: controller.itemList.length,
 
-                  return Dismissible(
-                    key: Key(item['id']),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
+                  itemBuilder: (context, index) {
+                    final item = controller.itemList[index];
 
-                      controller.showDeleteConfirmationDialog(context, item['id']);
-                    },
-                    background: Container(
-                      color: Colors.red,
-                      child: const Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: Icon(Icons.delete, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                    child: ListTile(
-                      onTap: () {
-                        controller.setSelectedItem(item);
-                        Get.to(DataDisplayScreen());
+                    return Dismissible(
+                      key: Key(item['id']),
+                      direction: DismissDirection.endToStart,
+                      onDismissed: (direction) async {
+
                       },
-                      trailing: Checkbox(
-                        value: item['checked'],
-                        onChanged: (value) {
-                          controller.toggleCheckbox(item['id'], value!);
-                        },
-                      ),
-                      title: Text(
-                        item['title'],
-                        style: TextStyle(
-                          decoration: item['checked'] ? TextDecoration.lineThrough : TextDecoration.none,
+                      confirmDismiss: (_) async {
+                        return await controller.showConfirmationDialog(context,item['id']);
+                      },
+                      background: Container(
+                        color: Colors.red,
+                        child: const Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: Icon(Icons.delete, color: Colors.white),
+                          ),
                         ),
                       ),
-                    ),
-                  );
-
-
-
-                },
-              );
-
+                      child: ListTile(
+                        onTap: () {
+                          controller.setSelectedItem(item);
+                          Get.to(DataDisplayScreen());
+                        },
+                        trailing: Checkbox(
+                          value: item['checked'],
+                          onChanged: (value) {
+                            controller.toggleCheckbox(item['id'], value!);
+                          },
+                        ),
+                        title: Text(
+                          item['title'],
+                          style: TextStyle(
+                            decoration: item['checked'] ? TextDecoration.lineThrough : TextDecoration.none,
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                );
+              }
             }),
           ),
+
+
 
         ],
       ),

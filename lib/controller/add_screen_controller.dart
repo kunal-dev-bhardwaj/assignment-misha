@@ -13,20 +13,30 @@ class AddScreenController extends GetxController {
     imageUrl.value = url;
   }
 
-  void addItem({required String title, required String description, required String? imageUrl}) {
+  Future<bool> addItem({
+    required String title,
+    required String description,
+    required String? imageUrl,
+  }) async {
     final newItem = {
       "title": title,
       "description": description,
       "imageUrl": imageUrl ?? '',
-      "checked":false
+      "checked": false,
+      "timestamp": ServerValue.timestamp,
     };
-
-    database.push().set(newItem).then((_) {
+    try {
+      final newRef = database.push(); // Push new item to Firebase
+      await newRef.set(newItem);
+      // await database.push().set(newItem);
       Get.snackbar('Success', 'Data added successfully!');
-    }).catchError((error) {
+      return true;
+    } catch (error) {
       Get.snackbar('Error', 'Failed to add data: $error');
-    });
+      return false;
+    }
   }
+
 
   Future<String?> uploadImage() async {
     final ImagePicker picker = ImagePicker();

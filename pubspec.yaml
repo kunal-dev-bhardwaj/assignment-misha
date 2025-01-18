@@ -53,6 +53,7 @@ dev_dependencies:
   firebase_storage:
   html_editor_enhanced:
   flutter_widget_from_html:
+  intl:
 #  flutter_html:
 
 # For information on the generic Dart part of this file, see the
